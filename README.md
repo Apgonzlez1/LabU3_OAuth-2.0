@@ -57,7 +57,7 @@ OAuth 2.0 es un estándar de autorización que permite a los usuarios compartir 
 3. Crear credenciales de tipo ID de cliente OAuth 2.0 y agregar URI de redireccionamiento:
    - `http://localhost:3000/auth/google/callback` (y la URL de producción en Vercel).
 
-**Ejemplo de configuración:**
+**Captura - Configuración del OAuth Client ID:**  
 ![Google OAuth](src/capturas/google_oauth.png)
 
 ---
@@ -103,6 +103,9 @@ OAuth 2.0 es un estándar de autorización que permite a los usuarios compartir 
    });
    ```
 
+**Captura - Autenticación con Google:**  
+![Autenticación con Google](src/capturas/Autenticas.png)
+
 ---
 
 ### 💬 Paso 3: Redirección al Frontend
@@ -115,12 +118,18 @@ const token = urlParams.get('token');
 localStorage.setItem("token", token);
 ```
 
+**Captura - Acceso al chat protegido tras autenticación:**  
+![Chat autenticado](src/capturas/chat.png)
+
 ---
 
 ### 🌐 Paso 4: Despliegue en Vercel
 
 - Subir el frontend a GitHub e importar el proyecto en Vercel.
 - Actualizar `GOOGLE_CALLBACK_URL` en el backend si es necesario para producción.
+
+**Captura - Página de inicio desplegada en Vercel:**  
+![Página en Vercel](src/capturas/vercel.png)
 
 ---
 
@@ -185,4 +194,3 @@ Se comprobó la importancia de delegar la autenticación a proveedores confiable
 - [Google Developers Identity Platform](https://developers.google.com/identity)
 - [Passport.js – Simple, unobtrusive authentication](https://www.passportjs.org/)
 - [JWT Introduction](https://jwt.io/introduction)
-- [Vercel Documentation](https://vercel.com/docs)
