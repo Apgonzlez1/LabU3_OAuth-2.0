@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>💬 Chat en Tiempo Real 🌈</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+  <!-- FontAwesome para íconos -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    crossorigin="anonymous"
+  />
+  <style>
+    /* 🌈 Estilos generales */
+    body {
+      font-family: 'Roboto', Arial, sans-serif;
+      max-width: 600px;
+      margin: 20px auto;
+      background: linear-gradient(to bottom right, #d0e6ff, #fff0f6);
+      color: #333;
+      padding: 10px;
+    }
+
+    h1 {
+      text-align: center;
+      user-select: none;
+      color: #3366cc;
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    section {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      padding: 1.8rem;
+      margin-top: 1.5rem;
+      transition: transform 0.3s;
+    }
+
+    section:hover {
+      transform: translateY(-3px);
+    }
+
+    h3 {
+      margin-top: 0;
+      color: #3366cc;
+      user-select: none;
+      font-size: 1.2rem;
+    }
+
+    input[type="email"],
+    input[type="password"],
+    input[type="text"] {
+      width: 100%;
+      padding: 0.7rem 0.9rem;
+      margin: 0.7rem 0 1rem 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    input:focus {
+      border-color: #3366cc;
+      box-shadow: 0 0 8px rgba(51,102,204,0.3);
+      outline: none;
+    }
+
+    button {
+      background: #3366cc;
+      border: none;
+      color: white;
+      padding: 0.7rem 1.2rem;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 8px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    button:hover {
+      background: #254e9b;
+      transform: scale(1.03);
+    }
+
+    #messages {
+      height: 320px;
+      overflow-y: auto;
+      border: 1px solid #ddd;
+      background: #f9f9f9;
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      user-select: text;
+      scrollbar-width: thin;
+      scrollbar-color: #3366cc #f0f2f5;
+    }
+
+    #messages::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    #messages::-webkit-scrollbar-thumb {
+      background-color: #3366cc;
+      border-radius: 4px;
+    }
+
+    .message {
+      margin-bottom: 0.9rem;
+      line-height: 1.4;
+      padding: 6px 10px;
+      border-radius: 12px;
+      background: #e6f0ff;
+      position: relative;
+      animation: fadeIn 0.3s;
+    }
+
+    .message strong {
+      color: #254e9b;
+    }
+
+    #msgInput {
+      width: calc(100% - 80px);
+      padding: 0.7rem 0.9rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px 0 0 8px;
+      outline: none;
+    }
+
+    #btnSend {
+      width: 70px;
+      border-radius: 0 8px 8px 0;
+      font-size: 1.1rem;
+      background: #3366cc;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+
+    #btnSend:hover {
+      background: #254e9b;
+    }
+
+    #btnLogout {
+      margin-top: 10px;
+      background: #d93025;
+    }
+
+    #btnLogout:hover {
+      background: #a2241a;
+    }
+
+    .error-msg {
+      color: #d93025;
+      font-weight: 600;
+      margin-top: -10px;
+      margin-bottom: 10px;
+    }
+
+    .success-msg {
+      color: #188038;
+      font-weight: 600;
+      margin-top: -10px;
+      margin-bottom: 10px;
+    }
+
+    /* Animaciones */
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(5px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    /* Botón Google */
+    .google-btn {
+      background-color: #4285F4;
+      color: white;
+      border: none;
+      padding: 10px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      justify-content: center;
+      margin-top: 8px;
+      font-weight: 500;
+    }
+
+    .google-btn:hover {
+      background-color: #357ae8;
+    }
+
+  </style>
+</head>
+<body>
+  <h1>💬 Chat en Tiempo Real 🌈</h1>
+
+  <!-- Registro -->
+  <section id="register">
+    <h3><i class="fa-solid fa-user-plus"></i> Registro ✨</h3>
+    <input type="email" id="registerEmail" placeholder="📧 Correo electrónico" required />
+    <input type="password" id="registerPassword" placeholder="🔒 Contraseña" required />
+    <button id="btnRegister"><i class="fa-solid fa-user-check"></i> Registrarse ✅</button>
+    <p id="registerMsg" class="error-msg"></p>
+  </section>
+
+  <!-- Login -->
+  <section id="login">
+    <h3><i class="fa-solid fa-right-to-bracket"></i> Iniciar Sesión 🔑</h3>
+    <input type="email" id="loginEmail" placeholder="📧 Correo electrónico" required />
+    <input type="password" id="loginPassword" placeholder="🔒 Contraseña" required />
+    <button id="btnLogin"><i class="fa-solid fa-arrow-right-to-bracket"></i> Entrar 🚀</button>
+    <p id="loginMsg" class="error-msg"></p>
+    <br>
+    <a href="http://localhost:3000/api/auth/google">
+      <button class="google-btn"><i class="fa-brands fa-google"></i> Iniciar sesión con Google</button>
+    </a>
+  </section>
+
+  <!-- Chat -->
+  <section id="chat" style="display:none;">
+    <h3><i class="fa-solid fa-comments"></i> Sala de Chat 💬</h3>
+    <div id="messages"></div>
+    <div style="display:flex; gap:0; margin-bottom:8px;">
+      <input type="text" id="msgInput" placeholder="✍️ Escribe tu mensaje..." autocomplete="off" />
+      <button id="btnSend" title="Enviar mensaje"><i class="fa-solid fa-paper-plane"></i></button>
+    </div>
+    <button id="btnLogout"><i class="fa-solid fa-power-off"></i> Cerrar sesión 🔒</button>
+  </section>
+
+  <script src="https://cdn.socket.io/4.5.4/socket.io.min.js" crossorigin="anonymous"></script>
+  <script src="app.js"></script>
+</body>
+</html>

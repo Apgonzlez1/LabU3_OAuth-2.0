@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Procesando...</title>
+</head>
+<body>
+  <h2>Procesando inicio de sesión...</h2>
+
+  <script>
+    // Extraer token de la URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get('token');
+
+    if (token) {
+      // Guardar en localStorage
+      localStorage.setItem('jwt', token);
+      // Redirigir al chat
+      window.location.href = '/index.html';
+    } else {
+      document.body.innerHTML = "<h2>Error: No se recibió token</h2>";
+    }
+  </script>
+</body>
+</html>

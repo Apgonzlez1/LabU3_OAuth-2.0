@@ -1,0 +1,31 @@
+# Ignorar variables de entorno
+.env
+
+# Node.js
+node_modules/
+
+# Logs
+logs/
+*.log
+
+# Vercel
+.vercel/
+
+# Sistema
+.DS_Store
+
+# Ignorar variables de entorno
+.env
+
+# Node.js
+node_modules/
+
+# Logs
+logs/
+*.log
+
+# Vercel
+.vercel/
+
+# Sistema
+.DS_Store
